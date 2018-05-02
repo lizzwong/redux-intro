@@ -24,11 +24,24 @@ class App extends Component {
     })
   }
 
+  handleAddElement = () => {
+      this.props.dispatch(
+      {
+        type: 'ADD_STAR',
+        starDetails: {
+          name: 'Gacrux',
+          diameter:50
+        }
+      }
+    )
+  }
+
   render() {
     return (
       <div className="App">
       <button onClick={this.handleClick}>Button One!</button>
       <button onClick={this.handleSecondClick}>Button Two!</button>
+      <button onClick={this.handleAddElement}>Add Element!</button>
       </div>
     );
   }

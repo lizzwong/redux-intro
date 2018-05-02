@@ -19,12 +19,14 @@ const firstReducer = (state, action) => {
 }
 
 const secondReducer = (state, action) => {
-    console.log(`Hi! I'm the second reducer`);
+    if(action.type === 'BUTTON_TWO'){
+        console.log(`Hi! I'm the second reducer`);
+    }
     return {};
 }
 
 const thirdReducer = (state, action) => {
-    console.log(`Hi! I'm the third reducer`, action);
+    console.log(`Hi! I'm the third reducer. This is the action.`, action);
     return {};
 }
 

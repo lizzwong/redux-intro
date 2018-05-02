@@ -53,7 +53,6 @@ class App extends Component {
           ...this.state.newElement,
           [propertyName]: event.target.value
         },
-
       }
     )
   }

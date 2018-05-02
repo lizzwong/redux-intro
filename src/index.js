@@ -8,21 +8,25 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 
-const firstReducer = (state, action) => {
+const firstReducer = (state = 0, action) => {
     // everytime you dispatch an action, all your Reducers will run 
     //this is a reducer
-
     if(action.type === 'BUTTON_ONE') {
         console.log(`Hi! I'm a reducer`); 
-    } 
-    return {};
+        return state += 1
+    } else if (action.type === 'BUTTON_TWO') {
+        return state -= 1
+    }
+
+    return state;
 }
 
-const secondReducer = (state, action) => {
+const secondReducer = (state = 0, action) => {
     if(action.type === 'BUTTON_TWO'){
         console.log(`Hi! I'm the second reducer`);
+        return state -= 1
     }
-    return {};
+    return state;
 }
 
 const thirdReducer = (state, action) => {
@@ -30,11 +34,13 @@ const thirdReducer = (state, action) => {
     return {};
 }
 
-const elementAdd = (state, action) => {
+const elementReducer = (state = [], action) => {
     if (action.type === 'ADD_ELEMENT') {
-        console.log(`Hi! I'm adding an element`, action);
+        console.log(`Hi! I'm adding an element:`, action.payload);
+        // don't push into array
+        return [...state, action.payload]
     }
-    return {};
+    return state;
 }
 
 const storeInstance = createStore(
@@ -44,7 +50,7 @@ const storeInstance = createStore(
         firstReducer,
         secondReducer,
         thirdReducer,
-        elementAdd
+        elementReducer
     })
 )
 

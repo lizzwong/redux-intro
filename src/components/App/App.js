@@ -78,6 +78,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      {/* show me what's in redux */}
+      <pre>{JSON.stringify(this.props.reduxState)}</pre>
+
       <button onClick={this.handleClick}>Button One!</button>
       <button onClick={this.handleSecondClick}>Button Two!</button>
       <button onClick={this.handleAddStar}>Add Star!</button>
@@ -90,6 +93,12 @@ class App extends Component {
   }
 }
 
+const mapReduxStateToProps = (reduxState) => {
+  // THAT NAME IS EXACTLY WHATS GOING ON
+  return {
+    reduxState
+  }
+}
 
 // connect curry 
 
@@ -98,4 +107,4 @@ class App extends Component {
 // const connectedApp = connected(App);
 // export default connectedApp;
 
-export default connect()(App);
+export default connect(mapReduxStateToProps)(App);

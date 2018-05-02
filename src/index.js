@@ -30,13 +30,21 @@ const thirdReducer = (state, action) => {
     return {};
 }
 
+const elementAdd = (state, action) => {
+    if (action.type === 'ADD_ELEMENT') {
+        console.log(`Hi! I'm adding an element`, action);
+    }
+    return {};
+}
+
 const storeInstance = createStore(
     // everytime you dispatch an action, all your Reducers will run 
     //this is a reducer
     combineReducers({
         firstReducer,
         secondReducer,
-        thirdReducer
+        thirdReducer,
+        elementAdd
     })
 )
 

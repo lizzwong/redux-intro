@@ -11,7 +11,10 @@ import registerServiceWorker from './registerServiceWorker';
 const firstReducer = (state, action) => {
     // everytime you dispatch an action, all your Reducers will run 
     //this is a reducer
-    console.log(`Hi! I'm a reducer`); 
+
+    if(action.type === 'BUTTON_ONE') {
+        console.log(`Hi! I'm a reducer`); 
+    } 
     return {};
 }
 

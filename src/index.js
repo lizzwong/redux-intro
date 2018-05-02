@@ -3,22 +3,33 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App.js';
 // createStore is a function
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 // Provider is a component 
 import { Provider } from 'react-redux';
+import logger from 'redux-logger';
+
 import registerServiceWorker from './registerServiceWorker';
 
 const firstReducer = (state = 0, action) => {
     // everytime you dispatch an action, all your Reducers will run 
     //this is a reducer
-    if(action.type === 'BUTTON_ONE') {
-        console.log(`Hi! I'm a reducer`); 
-        return state += 1
-    } else if (action.type === 'BUTTON_TWO') {
-        return state -= 1
-    }
+    // if(action.type === 'BUTTON_ONE') {
+    //     console.log(`Hi! I'm a reducer`); 
+    //     return state += 1
+    // } else if (action.type === 'BUTTON_TWO') {
+    //     return state -= 1
+    // }
 
-    return state;
+    // return state;
+
+    switch (action.type) {
+        case 'BUTTON_ONE': 
+            return state += 1;
+        case 'BUTTON_TWO':
+            return state -= 1;
+        default:
+            return state;    
+    }
 }
 
 const secondReducer = (state = 0, action) => {
@@ -51,7 +62,8 @@ const storeInstance = createStore(
         secondReducer,
         thirdReducer,
         elementReducer
-    })
+    }),
+    applyMiddleware(logger)
 )
 
 ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));
